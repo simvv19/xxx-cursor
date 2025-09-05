@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plateforme de Partage de Vidéos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Barre latérale -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="sidebar-logo">
+                <i class="fas fa-video"></i>
+                VideoShare
+            </h1>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <a href="/" class="nav-item active" data-page="home">
+                    <i class="fas fa-home"></i>
+                    <span>HOME</span>
+                </a>
+                <a href="/" class="nav-item" data-page="videos">
+                    <i class="fas fa-play-circle"></i>
+                    <span>VIDEOS</span>
+                </a>
+                <a href="/admin" class="nav-item" data-page="admin">
+                    <i class="fas fa-images"></i>
+                    <span>POSTS</span>
+                </a>
+            </div>
+            
+            <div class="nav-divider"></div>
+            
+            <div class="nav-section">
+                <div class="nav-item dropdown" data-dropdown="categories">
+                    <i class="fas fa-folder"></i>
+                    <span>CATEGORIES</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </div>
+                <div class="dropdown-menu" id="categories-dropdown">
+                    <div class="dropdown-item" onclick="setCategoryFilter('all')">
+                        <span>Toutes les catégories</span>
+                    </div>
+                    <div class="dropdown-item" onclick="setCategoryFilter('beurette')">
+                        <span>Beurette</span>
+                    </div>
+                    <div class="dropdown-item" onclick="setCategoryFilter('92i')">
+                        <span>92i</span>
+                    </div>
+                    <div class="dropdown-item" onclick="setCategoryFilter('suce')">
+                        <span>Suce</span>
+                    </div>
+                    <div class="dropdown-item" onclick="setCategoryFilter('baise')">
+                        <span>Baise</span>
+                    </div>
+                    <div class="dropdown-item" onclick="setCategoryFilter('plan à 3')">
+                        <span>Plan à 3</span>
+                    </div>
+                    <div class="dropdown-item" onclick="setCategoryFilter('noir')">
+                        <span>Noir</span>
+                    </div>
+                    <div class="dropdown-item" onclick="setCategoryFilter('blanche')">
+                        <span>Blanche</span>
+                    </div>
+                    <div class="dropdown-item" onclick="setCategoryFilter('nude')">
+                        <span>Nude</span>
+                    </div>
+                    <div class="dropdown-item" onclick="setCategoryFilter('fr')">
+                        <span>FR</span>
+                    </div>
+                </div>
+                
+                <div class="nav-item dropdown" data-dropdown="models">
+                    <i class="fas fa-users"></i>
+                    <span>MODELS</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </div>
+                <div class="dropdown-menu" id="models-dropdown">
+                    <div class="dropdown-item" onclick="filterByCreator('all')">
+                        <span>Tous les créateurs</span>
+                    </div>
+                    <!-- Les créateurs seront ajoutés dynamiquement -->
+                </div>
+                
+                <div class="nav-item dropdown" data-dropdown="tags">
+                    <i class="fas fa-hashtag"></i>
+                    <span>TAGS</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </div>
+                <div class="dropdown-menu" id="tags-dropdown">
+                    <div class="dropdown-item" onclick="setTagFilter('all')">
+                        <span>Tous les tags</span>
+                    </div>
+                    <!-- Les tags seront ajoutés dynamiquement -->
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Contenu principal -->
+    <div class="main-content">
+        <main class="main">
+        <div class="container">
+            <section class="hero">
+                <h2 class="hero-title">Découvrez et Téléchargez des Vidéos</h2>
+                <p class="hero-subtitle">Une plateforme simple pour partager et télécharger vos vidéos préférées</p>
+            </section>
+
+            <section class="search-section">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Rechercher par titre ou tag..." class="search-input">
+                    <button id="searchBtn" class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="filter-section">
+                    <div class="filter-categories">
+                        <h4>Filtrer par catégorie :</h4>
+                        <div class="category-filters" id="categoryFilters">
+                            <button class="category-filter active" data-category="all">Toutes</button>
+                        </div>
+                    </div>
+                    <div class="filter-tags">
+                        <h4>Filtrer par tags :</h4>
+                        <div id="filterTags"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tiktok-section" onclick="goToTiktok()">
+                <div class="tiktok-container">
+                    <div class="tiktok-logo">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <div class="tiktok-content">
+                        <h2 class="tiktok-title">Tiktok92i</h2>
+                        <p class="tiktok-subtitle">Découvrez nos vidéos les plus populaires</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="videos-section">
+                <div class="section-header">
+                    <h3>Vidéos Disponibles</h3>
+                    <div class="sort-options">
+                        <select id="sortSelect" class="sort-select">
+                            <option value="newest">Plus récentes</option>
+                            <option value="oldest">Plus anciennes</option>
+                            <option value="title">Titre A-Z</option>
+                            <option value="size">Taille</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="videos-grid" id="videosGrid">
+                    <div class="loading" id="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Chargement des vidéos...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2024 VideoShare. Tous droits réservés.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

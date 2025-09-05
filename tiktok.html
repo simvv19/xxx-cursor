@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiktok92i - Lecteur Vertical</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="tiktok-body">
+    <!-- Header TikTok -->
+    <header class="tiktok-header">
+        <div class="tiktok-header-content">
+            <a href="/" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1 class="tiktok-header-title">Tiktok92i</h1>
+            <div class="tiktok-header-actions">
+                <button class="header-btn" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="header-btn" id="menuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteneur principal TikTok -->
+    <main class="tiktok-main">
+        <div class="tiktok-container">
+            <div class="tiktok-video-wrapper">
+                <!-- Lecteur vidéo vertical -->
+                <div class="tiktok-video-container">
+                    <video class="tiktok-video" id="tiktokVideo" autoplay muted loop>
+                        <source src="" type="video/mp4">
+                        Votre navigateur ne supporte pas la lecture vidéo.
+                    </video>
+                    
+                    <!-- Filigrane CSS -->
+                    <div class="video-watermark">
+                        <span class="main-text">92i.com</span>
+                        <span class="sub-text">Tout vos leak sur</span>
+                        <span class="sub-text">92i.com</span>
+                    </div>
+                    
+                    <!-- Overlay de chargement -->
+                    <div class="tiktok-loading" id="tiktokLoading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                    
+                    <!-- Contrôles vidéo -->
+                    <div class="tiktok-video-controls">
+                        <button class="tiktok-play-btn" id="tiktokPlayBtn">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Informations de la vidéo -->
+                <div class="tiktok-video-info">
+                    <div class="tiktok-video-meta">
+                        <h2 class="tiktok-video-title" id="tiktokVideoTitle">Titre de la vidéo</h2>
+                        <p class="tiktok-video-creator" id="tiktokVideoCreator">Créateur</p>
+                        <p class="tiktok-video-description" id="tiktokVideoDescription">Description de la vidéo</p>
+                    </div>
+                    
+                    <!-- Actions TikTok -->
+                    <div class="tiktok-actions">
+                        <button class="tiktok-action-btn like-btn" id="tiktokLikeBtn">
+                            <i class="fas fa-heart"></i>
+                            <span class="action-count" id="tiktokLikeCount">0</span>
+                        </button>
+                        
+                        <button class="tiktok-action-btn comment-btn" id="tiktokCommentBtn">
+                            <i class="fas fa-comment"></i>
+                            <span class="action-count" id="tiktokCommentCount">0</span>
+                        </button>
+                        
+                        <button class="tiktok-action-btn download-btn" id="tiktokDownloadBtn">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation par flèches -->
+        <div class="tiktok-navigation">
+            <button class="tiktok-nav-btn prev-btn" id="prevVideoBtn">
+                <i class="fas fa-chevron-up"></i>
+            </button>
+            <button class="tiktok-nav-btn next-btn" id="nextVideoBtn">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <!-- Indicateur de progression -->
+        <div class="tiktok-progress">
+            <div class="tiktok-progress-bar">
+                <div class="tiktok-progress-fill" id="tiktokProgressFill"></div>
+            </div>
+            <div class="tiktok-video-counter">
+                <span id="currentVideoIndex">1</span> / <span id="totalVideos">0</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de recherche -->
+    <div class="tiktok-search-modal" id="tiktokSearchModal">
+        <div class="tiktok-search-content">
+            <div class="tiktok-search-header">
+                <h3>Rechercher des vidéos</h3>
+                <button class="close-btn" id="closeSearchBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="tiktok-search-body">
+                <input type="text" id="tiktokSearchInput" placeholder="Rechercher par titre, créateur ou tag..." class="tiktok-search-input">
+                <div class="tiktok-search-results" id="tiktokSearchResults"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Sheet de commentaires -->
+    <div class="tiktok-comments-modal" id="tiktokCommentsModal">
+        <div class="comments-overlay" id="commentsOverlay"></div>
+        <div class="tiktok-comments-sheet">
+            <div class="comments-sheet-header">
+                <div class="comments-drag-handle"></div>
+                <div class="comments-header-content">
+                    <h3 id="commentsCount">0 commentaires</h3>
+                    <button class="close-btn" id="closeCommentsBtn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="comments-location" id="commentsLocation">
+                    <span>Toulouse</span>
+                    <span>93.4K personnes ont publié à propos de ce lieu</span>
+                </div>
+            </div>
+            
+            <div class="comments-sheet-body">
+                <div class="comments-list" id="commentsList">
+                    <!-- Les commentaires seront ajoutés ici -->
+                </div>
+            </div>
+            
+            <div class="comments-input-bar">
+                <div class="user-avatar">
+                    <span>U</span>
+                </div>
+                <input type="text" id="commentInput" placeholder="Ajouter un commentaire..." class="comment-input">
+                <div class="comment-actions">
+                    <button class="comment-action-btn" id="addImageBtn">
+                        <i class="fas fa-image"></i>
+                    </button>
+                    <button class="comment-action-btn" id="addEmojiBtn">
+                        <i class="fas fa-smile"></i>
+                    </button>
+                    <button class="comment-action-btn" id="addMentionBtn">
+                        <i class="fas fa-at"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="tiktok.js"></script>
+</body>
+</html>

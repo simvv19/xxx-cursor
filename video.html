@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecteur Vidéo - VideoShare</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">
+                <i class="fas fa-video"></i>
+                VideoShare
+            </h1>
+            <nav class="nav">
+                <a href="/" class="nav-link">Accueil</a>
+                <a href="/admin" class="nav-link">Administration</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="video-container">
+                <!-- Bouton retour -->
+                <div class="video-header">
+                    <a href="/" class="back-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        Retour à l'accueil
+                    </a>
+                </div>
+
+                <!-- Lecteur vidéo -->
+                <div class="video-player-section">
+                    <div class="video-player-container">
+                        <video id="videoPlayer" controls preload="metadata" class="video-player">
+                            <source id="videoSource" src="" type="video/mp4">
+                            Votre navigateur ne supporte pas la lecture de vidéos.
+                        </video>
+                        
+                        <!-- Filigrane CSS -->
+                        <div class="video-watermark">
+                            <span class="main-text">92i.com</span>
+                            <span class="sub-text">Tout vos leak sur</span>
+                            <span class="sub-text">92i.com</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Informations de la vidéo -->
+                    <div class="video-info-section">
+                        <h1 id="videoTitle" class="video-title-large"></h1>
+                        <div class="video-meta-large">
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span id="videoDate"></span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-file"></i>
+                                <span id="videoSize"></span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-eye"></i>
+                                <span id="videoViews">0 vues</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-download"></i>
+                                <a href="#" id="downloadLink" class="download-link">Télécharger</a>
+                            </div>
+                        </div>
+                        
+                        <div class="video-interactions-large">
+                            <button class="interaction-btn-large like-btn" id="likeBtn">
+                                <i class="fas fa-thumbs-up"></i>
+                                <span class="like-count">0</span>
+                            </button>
+                            <button class="interaction-btn-large dislike-btn" id="dislikeBtn">
+                                <i class="fas fa-thumbs-down"></i>
+                                <span class="dislike-count">0</span>
+                            </button>
+                        </div>
+                        
+                        <div class="video-tags-large" id="videoTags"></div>
+                        
+                        <div class="video-description">
+                            <p>Profitez de cette vidéo en haute qualité. Vous pouvez la télécharger ou la partager avec vos amis.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vidéos suggérées -->
+                <div class="suggested-videos">
+                    <h3>Autres vidéos</h3>
+                    <div class="suggested-grid" id="suggestedGrid">
+                        <div class="loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Chargement des vidéos...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 VideoShare. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="video.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - VideoShare</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">
+                <i class="fas fa-video"></i>
+                VideoShare
+            </h1>
+            <nav class="nav">
+                <a href="/" class="nav-link">Accueil</a>
+                <a href="/admin" class="nav-link active">Administration</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="admin-section">
+                <h2 class="section-title">
+                    <i class="fas fa-cog"></i>
+                    Administration
+                </h2>
+
+                <div class="admin-tabs">
+                    <button class="tab-btn active" data-tab="upload">
+                        <i class="fas fa-upload"></i>
+                        Upload Vidéo
+                    </button>
+                    <button class="tab-btn" data-tab="manage">
+                        <i class="fas fa-list"></i>
+                        Gérer les Vidéos
+                    </button>
+                </div>
+
+                <!-- Onglet Upload -->
+                <div class="tab-content active" id="upload-tab">
+                    <div class="upload-container">
+                        <form id="uploadForm" class="upload-form">
+                            <div class="form-group">
+                                <label for="videoFile" class="form-label">
+                                    <i class="fas fa-video"></i>
+                                    Sélectionner une vidéo
+                                </label>
+                                <input type="file" id="videoFile" name="video" accept="video/*" required class="file-input">
+                                <div class="file-info" id="fileInfo"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="videoTitle" class="form-label">
+                                    <i class="fas fa-heading"></i>
+                                    Titre de la vidéo
+                                </label>
+                                <input type="text" id="videoTitle" name="title" required class="text-input" placeholder="Entrez le titre de la vidéo">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="videoCreator" class="form-label">
+                                    <i class="fas fa-user"></i>
+                                    Créateur/Créatrice
+                                </label>
+                                <input type="text" id="videoCreator" name="creator" class="text-input" placeholder="Nom du créateur ou de la créatrice">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="videoCategory" class="form-label">
+                                    <i class="fas fa-list"></i>
+                                    Catégorie
+                                </label>
+                                <select id="videoCategory" name="category" class="text-input" required>
+                                    <option value="">Sélectionnez une catégorie</option>
+                                    <option value="beurette">Beurette</option>
+                                    <option value="92i">92i</option>
+                                    <option value="suce">Suce</option>
+                                    <option value="baise">Baise</option>
+                                    <option value="plan à 3">Plan à 3</option>
+                                    <option value="noir">Noir</option>
+                                    <option value="blanche">Blanche</option>
+                                    <option value="nude">Nude</option>
+                                    <option value="fr">FR</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="videoTags" class="form-label">
+                                    <i class="fas fa-tags"></i>
+                                    Tags supplémentaires (optionnel)
+                                </label>
+                                <input type="text" id="videoTags" name="tags" class="text-input" placeholder="ex: amateur, HD, court">
+                                <small class="form-help">Séparez les tags par des virgules</small>
+                            </div>
+
+                            <button type="submit" class="upload-btn" id="uploadBtn">
+                                <i class="fas fa-upload"></i>
+                                Uploader la Vidéo
+                            </button>
+                        </form>
+
+                        <div class="upload-progress" id="uploadProgress" style="display: none;">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <p class="progress-text" id="progressText">Upload en cours...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Onglet Gestion -->
+                <div class="tab-content" id="manage-tab">
+                    <div class="manage-container">
+                        <div class="manage-header">
+                            <h3>Vidéos Uploadées</h3>
+                            <button class="refresh-btn" id="refreshBtn">
+                                <i class="fas fa-sync-alt"></i>
+                                Actualiser
+                            </button>
+                        </div>
+
+                        <div class="videos-list" id="adminVideosList">
+                            <div class="loading" id="adminLoading">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <p>Chargement des vidéos...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 VideoShare. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="admin.js"></script>
+</body>
+</html>
